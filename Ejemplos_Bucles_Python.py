@@ -89,4 +89,41 @@ for a,b,c in zip(l1,l2,l3):
     print(a+b+c, end=' ')
 
 
+#ficheross
+
+zen = '''\
+Bello es mejor que feo.
+Explícito es mejor que implícito.
+Simple es mejor que complejo.
+Complejo es mejor que complicado.
+'''
+
+f = open('short.zen.txt', 'w')
+f.writelines(zen) # Escribe el fichero
+f.close() # Cierra el fichero
+
+f = open('short.zen.txt', 'r')
+linea = f.readline()
+print(linea)
+linea = f.__next__()
+print(linea)
+linea = f.readline()
+print(linea)
+linea = f.readline()
+print(linea)
+linea = f.readline()
+print(linea)
+
+lista = [1,2,3, 4]
+#li = lista.__iter__()
+li = iter(lista)
+
+li_print = next(li)
+print(li_print)
+li_print = next(li)
+print(li_print)
+li_print = next(li)
+print(li_print)
+li_print = next(li)
+print(li_print)
 
