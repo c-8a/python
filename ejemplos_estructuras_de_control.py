@@ -212,7 +212,7 @@ while edad<0:
 print("tu edad es: "+str(edad))
 # Calcula la raiz cuadrada de un número. Tenemos tres intentos y el número no puede ser negativo.
 import math;
-intentos=0;
+intentos=0 
 num = int(input("Introduce numero: "))
 while num<0:
     intentos=intentos+1
@@ -220,12 +220,13 @@ while num<0:
     num=int(input("Introduce numero: "))
     if intentos==2:
         print("Demasiados intentos")
-        break;
+        break
 if intentos<2:
     intentos=intentos+1
 solucion=math.sqrt(num)
 print("la raiz cuadrada de"+str(num)+ " es: "+str(solucion))
 # Bucle while con un if anidado y un break
+
 # Salga del bucle cuando num sea 3:
 num = 1
 while num < 6:
@@ -246,16 +247,20 @@ Se escriben entre corchetes. []
 """
 miLista=["Angel", 43, 667767250]
 miLista2 = [22, True, "una lista", [1,2]]
+
 # MÉTODOS DE LAS LISTAS
 # Hacer una lista de una cadena
 miLista = list("PYTHON")
 print(miLista)
+
 # Acceder a los elementos de una lista
 miLista = [22, True, "una cadena", [1,2]]
 print(miLista[0])
+
 miLista = [[1,2] , [3,4] , [5,6]]
-miVar = miLista[1,1]
+miVar = miLista[1][1]
 print(miVar)
+
 # Función con una lista como parámetro
 def miFunccion(listaFrutas):
     for x in listaFrutas:
@@ -273,27 +278,33 @@ paréntesis.
 # Declaración de una tupla
 miTupla = ("manzana", "banana", "cereza")
 print(miTupla[1])
+
 # Otra forma de declararla
 miTupla = tuple(("manzana", "banana", "cereza"))
 print(miTupla)
+
 # Indexación Negativa
 miTupla = ("manzana", "banana", "cereza")
-print(miTupla[-1])
+print(miTupla[-2])
+
 # Rango de índices
 # Devuelve el tercer, cuarto y quinto elemento:
 miTupla = ("manzana", "banana", "cereza",
 "naranja", "kiwi", "melon", "mango")
 print(miTupla[2:5])
+
 # Convierta la tupla en una lista para poder cambiarla:
 miTupla = ("manzana", "banana", "cereza")
 miLista = list(miTupla)
 miLista[1] = "kiwi"
 miTupla = tuple(miLista)
 print(miTupla)
+
 # Recorrer una tupla
 miTupla = ("manzana", "banana", "cereza")
 for x in miTupla:
     print(x)
+
 # Comprobar si existe un elemento
 # Compruebe si "manzana" está presente en la tupla:
 miTupla = ("manzana", "banana", "cereza")
@@ -301,17 +312,21 @@ if "manzana" in miTupla:
     print("Sí, 'manzana' está en la tupla.")
 # Otra forma, simplemente con un boolean
 print("manzana" in miTupla)
+
 # Longitud de la tupla
 miTupla = ("manzana", "banana", "cereza")
 print(len(miTupla))
+
 # Unir dos tuplas
 tupla1 = ("a", "b" , "c")
 tupla2 = (1, 2, 3)
 tupla3 = tupla1 + tupla2
 print(tupla3)
+
 # Cuantas veces se encuentra el elemento 4 en miTupla?
 miTupla = ("manzana", "banana", "cereza", "manzana")
 print(miTupla.count("manzana"))
+
 # Desempaquetdo de tupla
 miTupla=("Angel", 4, 5.345, True, 4)
 nombre, num1, num2, valor1, num3=miTupla
@@ -344,40 +359,46 @@ print(miDiccionario)
 peliculas = {"Love Actually": "Richard Curtis",
 "Kill Bill": "Tarantino",
 "Amélie": "Jean-Pierre Jeunet"}
-peliculas["Love Actually"]
+print(peliculas["Love Actually"])
 # Reasignar valores a un diccionario
 peliculas["Kill Bill"] = "Quentin Tarantino"
 print(peliculas)
+
 # Usar una tupla dentro de un diccionario:
 miDiccionario3={"nombre":"Jordan",
 "Equipo":"Bulls", "Anillos":[1991, 1992,
 1993, 1996, 1997, 1998]}
 print(miDiccionario3["Anillos"])
+
 # Quitar valores de un diccionario
 peliculas = {"Love Actually": "Richard Curtis",
 "Kill Bill": "Tarantino",
 "Amélie": "Jean-Pierre Jeunet"}
 peliculas.pop("Love Actually")
 print(peliculas)
+
 # Crear un diccionario a partir de dos listas:
 lista_claves=["nombre", "edad"]
 lista_valores=["Angel", 43]
-diccionario = dict(zip(lista_claves ,
-lista_valores))
+diccionario = dict(zip(lista_claves , lista_valores))
 print(diccionario)
+
 # Para comprobar si una clave está en el diccionario:
 "nombre" in diccionario #Devuelve true o false
-# Imprima las claves del diccionario:
+
+# Imprima los valores del diccionario:
 peliculas = {"Love Actually": "Richard Curtis",
 "Kill Bill": "Tarantino",
 "Amélie": "Jean-Pierre Jeunet"}
 for x in peliculas:
     print(peliculas[x])
+
 # Longitud de un diccionario:
 peliculas = {"Love Actually": "Richard Curtis",
 "Kill Bill": "Tarantino",
 "Amélie": "Jean-Pierre Jeunet"}
 print(len(peliculas))
+
 # Agregar elementos a un diccionario:
 miDiccionario = {
 "brand": "Ford",
@@ -386,6 +407,7 @@ miDiccionario = {
 }
 miDiccionario["color"] = "red"
 print(miDiccionario)
+
 # Eliminar el último elemento insertado:
 miDiccionario = {
 "brand": "Ford",
@@ -394,6 +416,7 @@ miDiccionario = {
 }
 miDiccionario.popitem()
 print(miDiccionario)
+
 # La palabra clave del elimina el elemento con el nombre de clave especificado:
 miDiccionario = {
 "brand": "Ford",
@@ -402,6 +425,7 @@ miDiccionario = {
 }
 del miDiccionario["model"]
 print(miDiccionario)
+
 # La palabra clave del también puede eliminar completamente el diccionario:
 miDiccionario = {
 "brand": "Ford",
@@ -410,6 +434,7 @@ miDiccionario = {
 }
 del miDiccionario
 print(miDiccionario)
+
 # La palabra clave clear() vacía el diccionario:
 miDiccionario = {
 "brand": "Ford",
@@ -418,6 +443,7 @@ miDiccionario = {
 }
 miDiccionario.clear()
 print(miDiccionario)
+
 # Copiar un diccionario
 miDiccionario = {
 "brand": "Ford",
@@ -426,6 +452,7 @@ miDiccionario = {
 }
 midict = miDiccionario.copy()
 print(midict)
+
 # Otra forma de copiar un diccionario
 miDiccionario = {
 "brand": "Ford",
@@ -434,6 +461,7 @@ miDiccionario = {
 }
 midict = dict(miDiccionario)
 print(midict)
+
 # Diccionarios anidados
 child1 = {
 "name" : "Emil",
@@ -479,10 +507,12 @@ mi_conjunto.add("Antonio")
 mi_conjunto.update({"Fran", "María"})
 # Unión de colecciones. Si hay algún valor repetido sólo aparecerá una vez.
 union= mi_conjunto | mi_conjunto2
+print(union)
 # Intersección de conjuntos:
 interseccion= mi_conjunto & mi_conjunto2
 # Nos crea otro conjunto con los valores que estaban duplicados en ambos conjuntos.
 # En nuestro caso sólo Angel.
+print(interseccion)
 # Diferencia de conjuntos. Nos crea otro conjunto con los elementos que no están duplicados.
 diferencia= mi_conjunto - mi_conjunto2
 # Para comprobar si un elemento está en un conjunto:
@@ -571,9 +601,8 @@ def suma():
     num2 = 5
     resultado = num1 + num2
     return resultado
+print(suma())
 
-
-    print(suma())
 # -------------------------------------
 #El bloque de código que ejecutará la función incluye todas las declaraciones con indentación
 # dentro de la función.
@@ -582,6 +611,7 @@ def miFunción():
     print('so will this')
 x = 7
 # la asignación de x no es parte de la función ya que no está indentada
+
 #---------------------------------------
 #Las variables definidas dentro de una función solo existen dentro del ámbito de esa función.
 def duplica(num):
@@ -589,21 +619,24 @@ def duplica(num):
     return x
 print(x) # error - x no está definida 
 print(duplica(4)) # muestra 8
+
 #---------------------------------------
 #Si la definición de una función incluye parámetros, debe proporcionar el mismo número
 # de parámetros cuando llame a la función.
 def multiplica(arg1, arg2):
     return arg1 * arg2
-#print(multiplica(3)) # TypeError: multiplica() utiliza exactamente 2 argumentos (0 proporcionados)
+#print(multiplica(3)) # TypeError: multiplica() utiliza exactamente 2 argumentos (1 proporcionados)
 print(multiplica('a', 5)) # 'aaaaa' mostrado en la consola
 #print(multiplica('a', 'b')) #TypeError: Python no puede multiplicar dos strings
+
 #---------------------------------------
 #Puedes pasar los parámetros en el orden que desees, utilizando el nombre del parámetro.
 def suma(a, b):
     return a + b
 result = suma(b=2, a=3)
 print(result)
-# result = 4
+# result = 5
+
 #---------------------------------------
 #También podríamos pasar varios valores que retornar a return.
 def f(x, y):
@@ -616,6 +649,7 @@ lo que ocurre en realidad es que Python
 crea una tupla al vuelo cuyos elementos
 son los valores a retornar, y esta única
 variable es la que se devuelve."""
+
 # -------------------------------------
 # función con un parámetro
 # -------------------------------------
@@ -624,17 +658,20 @@ def miFuncion(num1, num2):
     return(num1+num2)
 # Llamada a la función
 print(miFuncion(2, 3))
+
 # -------------------------------------
 def holaConNombre(name):
     print("Hola " + name + "!")
 holaConNombre("Angel") # llamada a la función, 'Hola Angel!' se muestra en la consola
 # -------------------------------------
+
 #---------------------------------------
 # Funcion con parametro por defecto
 #---------------------------------------
 def imprimir(precio, iva = 1.21):
     print(precio * iva)
 imprimir(300, 1.08)
+
 # Funciones con argumentos variables
 # Me crea una tupla de nombre "otros"
 def varios(param1, param2, *otros):
@@ -654,11 +691,13 @@ indicados al llamar a la función y los
 valores del diccionario,
 los valores asociados a estos parámetros.
 """
+
 def varios(param1, param2, **otros):
     for i in otros.items():
         print (i)
 varios(1, 2, tercero = 3)
 # ---------------------------
+
 #---------------------------------------
 #ARGUMENTOS VARIABLES EN FUNCIONES. EL ARGUMENTO CON * SERÁ UNA TUPLA
 # PYTHON NO TIENE SOBRECARGA DE FUNCIONES
@@ -668,6 +707,7 @@ def listarNombres(*nombres):
         print(nombre)
 listarNombres('Juan', 'Karla', 'María', 'Ernesto')
 listarNombres('Laura', 'Carlos')
+
 #---------------------------------------
 # hACER LO MISMO PERO PASANDO DICCIONARIOS COMO ARGUMENTOS. KWARGS
 def listarTerminos(**KWARGS):
@@ -675,23 +715,24 @@ def listarTerminos(**KWARGS):
         print(f'{clave}: {valor}')
 listarTerminos(IDE='Integrated Developement Environment', PK='PrimaryKey')
 listarTerminos(DBMS='Database ManagementSystem')
+
 #---------------------------------------
 def mi_funcion(nombre, apellido):
     print('saludos desde mi función')
-    print(f'Nombre: {nombre}, Apellido:
-{apellido}')
+    print(f'Nombre: {nombre}, Apellido: {apellido}')
 # Sería como imprimir así:
-    print('Nombre:', nombre, 'Apellido:',
-apellido)
+    print('Nombre:', nombre, 'Apellido:', apellido)
 mi_funcion('Juan', 'Perez')
 mi_funcion('Karla','Lara')
 #---------------------------------------
+
 # RETURN
 #---------------------------------------
 #function definiciones de function no pueden estar vacías, pero si por alguna razón tiene
 # una definición de function sin contenido, ingrese la instrucción pass para evitar un error.
 def myfunction():
     pass
+
 #---------------------------------------
 def sumar(a, b):
     return a + b
@@ -700,25 +741,29 @@ print(f'Resultado sumar: {resultado}')
 # print(f'Resultado sumar: {sumar(5,3}')
 #También podíamos haber llamado a la función dentro de nuestro método print
 print(f'Resultado sumar: {sumar(5,3)}')
+
 # ---------------------------
 # función con múltiples parámetros con una sentencia de retorno
 def multiplica(val1, val2):
     return val1 * val2
 multiplica(3, 5) # muestra 15 en la consola
+
 #---------------------------------------
 # esta es una función básica de suma
 def suma(a, b):
     return a + b
 result = suma(1, 2)
 # result = 3
+
 #---------------------------------------
 # VALORES POR DEFECTO
 #---------------------------------------
-# esta es una función básica de suma con balores predeterminados
+# esta es una función básica de suma con valores predeterminados
 def suma(a, b=3):
     return a + b
 result = suma(1)
 # result = 4
+
 #---------------------------------------
 # Indicio de qué tipo de dato vamos a manejar:
 #---------------------------------------
@@ -729,9 +774,10 @@ resultado = sumar()
 #print(f'Resultado sumar: {resultado}')
 print(f'Resultado sumar: {sumar(45,
 654)}')
-#uanque le hemos dicho el tipo de los parámetros no estamos obligados a cumplirlo.
+#aunque le hemos dicho el tipo de los parámetros no estamos obligados a cumplirlo.
 print(f'Resultado sumar: {sumar("aNGEL",
 "Garcia")}')
+
 #---------------------------------------
 """
 Crear una función para sumar los valores
@@ -751,18 +797,19 @@ def sumar_valores(*args):
         resultado += valor
     return resultado
 # Llamada a la funcion
-print(sumar_valores(3, 5, 9, 4, 6, 45,
-444))
+print(sumar_valores(3, 5, 9, 4, 6, 45, 444))
+
 #---------------------------------------
 # Distintos tipos de datos como argumentos en Python
 def desplegarNombres(nombres):
     for nombre in nombres:
         print(nombre)
-#nombres = ['Juan', 'Karla', 'Guillermo']
-#desplegarNombres(nombres)
-#desplegarNombres('Carlos')
-#desplegarNombres((8, 9))
+nombres = ['Juan', 'Karla', 'Guillermo']
+desplegarNombres(nombres)
+desplegarNombres('Carlos')
+desplegarNombres((8, 9))
 desplegarNombres([10, 11])
+
 #---------------------------------------
 # FUNCIONES RECURSIVAS
 # 5! = 5 * 4 * 3 * 2 * 1
@@ -777,8 +824,8 @@ def factorial(numero):
         return numero * factorial(numero-1)
 numero = 6
 resultado = factorial(numero)
-print(f'El factorial de {numero} es
-{resultado}')
+print(f'El factorial de {numero} es {resultado}')
+
 #---------------------------------------
 """
 Imprimir numeros de 5 a 1 de manera
@@ -807,7 +854,8 @@ def imprimir_numero_recursivo(numero):
         return
     elif numero < 0:
         print('Valor incorrecto...')
-imprimir_numero_recursivo(5000000)
+imprimir_numero_recursivo(50)
+
 #---------------------------------------
 def cuenta_regresiva(numero):
     numero -= 1
@@ -818,6 +866,7 @@ def cuenta_regresiva(numero):
         print ("Boooooooom!")
         print ("Fin de la función"), numero
 cuenta_regresiva(5)
+
 #---------------------------------------
 """
 Ejercicio: Calculadora de Impuestos
@@ -837,6 +886,7 @@ impuesto = float(input('Proporcione el monto del impuesto:'))
 pago_con_impuesto = calcular_total_pago(pago_sin_impuesto, impuesto)
 print(f'Pago con impuesto:{pago_con_impuesto}')
 #---------------------------------------
+
 #---------------------------------------
 """
 Ejercicio: Convertidor de Temperatura
@@ -859,3 +909,57 @@ fahrenheit = float(input('Proporcione su valor en fahrenheit: '))
 resultado = fahrenheit_celsius(fahrenheit)
 # Imprimimos el resultado
 print(f'{fahrenheit} F a C: {resultado:0.2f}')
+
+
+a, b, c = map(int, input("Introduzca los números: ").split()) #["10", "20", "30"]
+print("Los números son: ", end = " ")
+print(a, b, c)
+
+List = list()
+Set = set()
+l = int(input("Introduzca el tamaño de la lista: "))
+s = int(input("Introduzca el tamaño del Set: "))
+print("Introduzca los elementos de la lista:")
+for i in range(0, l):
+    List.append(int(input()))
+print("Introduzca los elementos del Set: ")
+for i in range(0, s):
+    Set.add(int(input()))
+print(List)
+print(Set)
+
+
+List = list(map(int, input("Introduzca los elementos de la lista:").split()))
+Set = set(map(int, input("Introduzca los elementos del Set: ").split()))
+print(List)
+print(Set)
+
+T = (2, 3, 4, 5, 6)
+print("Tupla inicial")
+print(T)
+L = list(T)
+L.append(int(input("Introduzca el nuevo elemento: ")))
+T = tuple(L)
+print("Tupla final")
+print(T)
+
+# Declaramos de variables
+a = 20
+b = 10
+# Suma
+sum = a+b
+# Resta
+sub = a-b
+# Salida
+print('El valor de a es {} y b es {}'.format(a,b))
+print('{2} es la suma de {0} y {1}'.format(a, b, sum))
+print('{sub_value} es la resta de \
+{value_a} y {value_b}'.format(value_a=a,value_b=b,\
+                              sub_value=sub))
+
+
+# Entrada de datos
+num = int(input("Introduzca un número: "))
+add = num+5
+# Salida
+print("La suma es %d" %add)
