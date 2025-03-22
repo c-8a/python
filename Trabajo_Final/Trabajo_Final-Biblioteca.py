@@ -53,7 +53,6 @@ def buscar_indice(isbn):
     for indice, libros in enumerate(libreria):
         if libros.get_isbn() == isbn:
             return indice
-    print("Libro no encontrado")
     return None
         
 #Funcion para prestar un libro de la lista buscando por ISBN
@@ -61,23 +60,29 @@ def prestar_libro (isbn) :
     indice = buscar_indice(isbn)
     if indice != None:
         libreria[indice].prestar()
+    else:    
+        print("Libro no encontrado")
 
 #Funcion para devolver un libro de la lista buscando por ISBN
 def devolver_libro (isbn) :
     indice = buscar_indice(isbn)
     if indice != None:
         libreria[indice].devolver()
-    
-#Funcion para mostrar la información de cada objeto dentro de la lista
-def mostrar_libros():
-    for libros in libreria:
-        libros.mostrar()
+    else:    
+        print("Libro no encontrado")
 
 #Funcion para buscar un elemento dentro de la lista según su ISBN
 def buscar_libro(isbn):
     indice = buscar_indice(isbn)
     if indice != None:
         libreria[indice].mostrar()
+    else:    
+        print("Libro no encontrado")
+
+#Funcion para mostrar la información de cada objeto dentro de la lista
+def mostrar_libros():
+    for libros in libreria:
+        libros.mostrar()
 
 #Mensaje de bienvenida
 print ("Bienvenido al sistema de gestión de biblioteca")
@@ -106,8 +111,11 @@ while opcion != 6:
         isbn = input("Ingrese ISBN: ")
         #Se crea un nuevo objeto libro con los datos introducidos
         libro = Libro(titulo, autor, isbn)
-        #Se agrega el libro al listado
-        libro.agregar(libreria)
+        if buscar_indice(isbn) == None:    
+            #Se agrega el libro al listado
+            libro.agregar(libreria)
+        else:
+            print("Libro ya existente")
 
     elif opcion == 2:
         isbn = input("Ingrese ISBN: ")
