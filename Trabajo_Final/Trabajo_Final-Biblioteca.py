@@ -6,7 +6,13 @@ class Libro:
         self.autor = autor
         self.isbn = isbn
         self.disponible = True
+
+    #Método para agregar un libro a la lista
+    def agregar(self, libreria):
+        libreria.append(self)
+        print ("\nLibro añadido exitosamente")
     
+    #Método para prestar un libro si el mismo está disponible
     def prestar(self):
         if self.disponible == True:
             self.disponible = False
@@ -14,6 +20,7 @@ class Libro:
         else:
             print("Libro no disponible")
 
+    #Método para devolver un libro si el mismo fue prestado
     def devolver(self):
         if self.disponible == False:
             self.disponible = True
@@ -21,62 +28,55 @@ class Libro:
         else:
             print("Libro ya disponible")
 
-    #Método para mostrar toda la información de la clase
+    #Método para mostrar toda la información del objeto
     def mostrar (self) :
         if self.disponible == True:
             s_disponible = "Si"
         else:
             s_disponible = "No"
-
         print (f" - Título: {self.titulo} - Autor: {self.autor} - ISBN: {self.isbn} - Disponible: {s_disponible}")
 
-
-libreria = []
+    #Getter para las busquedas de ISBN de los objetos
+    def get_isbn(self):
+        return self.isbn
     
-#Funcion para agregar un elemento a la lista
-def agregar(libro):
-    libreria.append(libro)
-    print ("\nLibro añadido exitosamente")
+#Declaración inicial de una lista vacía
+libreria = []
 
-#Funcion para marcar un libro como "No disponible" al prestarlo
-#ó mostrar una advertencia si ya estaba prestado
-def prestar (isbn) :
+#Funcion para prestar un libro de la lista buscando por ISBN
+def prestar_libro (isbn) :
     for libros in libreria:
-        if libros.isbn == isbn:
+        if libros.get_isbn() == isbn:
             libros.prestar()
-            return
-            
+            return 
     print("Libro no encontrado")
 
-#Funcion para marcar un libro como "Disponible" al ser devuelto
-#ó mostrar una advertencia si ya se encontraba disponible
-def devolver (isbn) :
+#Funcion para devolver un libro de la lista buscando por ISBN
+def devolver_libro (isbn) :
     for libros in libreria:
-        if libros.isbn == isbn:
+        if libros.get_isbn() == isbn:
             libros.devolver()
             return
-
     print("Libro no encontrado")
     
 #Funcion para mostrar la información de cada objeto dentro de la lista
-def mostrar_todos():
+def mostrar_libros():
     for libros in libreria:
         libros.mostrar()
 
 #Funcion para buscar un elemento dentro de la lista según su ISBN
 #Si el elemento no existe, muestra una advertencia
-def buscar(isbn):
+def buscar_libro(isbn):
     for libros in libreria:
-        if libros.isbn == isbn:
+        if libros.get_isbn() == isbn:
             libros.mostrar()
-            return
-        
+            return   
     print("Libro no encontrado")
 
 #Mensaje de bienvenida
 print ("Bienvenido al sistema de gestión de biblioteca")
 
-opcion = 1 #creacion de la variable de control del bucle while
+opcion = 1 #Creación de la variable de control del bucle while
 
 #Bucle interactivo de opciones
 while opcion != 6:
@@ -88,26 +88,28 @@ while opcion != 6:
         "5. Buscar\n" +
         "6. Salir")
     opcion = int(input("\nOpción elegida: ")) 
-    if opcion == 1: 
+
+    if opcion == 1:
+        #Se piden los datos del nuevo libro
         titulo = input("\nIngrese titulo: ")
         autor = input("Ingrese autor: ")
         isbn = input("Ingrese ISBN: ")
+        #Se crea un nuevo objeto libro con los datos introducidos
         libro = Libro(titulo, autor, isbn)
-        agregar(libro)
+        #Se agrega el libro al listado
+        libro.agregar(libreria)
     elif opcion == 2:
         isbn = input("Ingrese ISBN: ")
-        prestar(isbn)
+        prestar_libro(isbn)
     elif opcion == 3:
         isbn = input("Ingrese ISBN: ")
-        devolver(isbn)
+        devolver_libro(isbn)
     elif opcion == 4:
-        mostrar_todos()
+        mostrar_libros()
     elif opcion == 5:
         isbn = input("Ingrese ISBN: ")
-        buscar(isbn)
+        buscar_libro(isbn)
     elif opcion == 6:
         print("Gracias por usar el servicio")
-    else:
+    else: #Para cualquier otra opción, se muestra un mensaje y reintenta
         print("Opción incorrecta, intente de nuevo")
-
-
