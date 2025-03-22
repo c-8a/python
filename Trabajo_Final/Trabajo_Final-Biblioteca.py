@@ -93,7 +93,11 @@ while opcion != 6:
             "4. Mostrar libros\n" +
             "5. Buscar\n" +
             "6. Salir")
-    opcion = int(input("\nOpción elegida: ")) 
+    opcion = input("\nOpción elegida: ")
+    if opcion.isdigit():
+        opcion = int(opcion)
+    else:
+        opcion = -1
 
     if opcion == 1:
         #Se piden los datos del nuevo libro
