@@ -7,6 +7,20 @@ class Libro:
         self.isbn = isbn
         self.disponible = True
     
+    def prestar(self):
+        if self.disponible == True:
+            self.disponible = False
+            print("Libro prestado exitosamente")
+        else:
+            print("Libro no disponible")
+
+    def devolver(self):
+        if self.disponible == False:
+            self.disponible = True
+            print("Libro devuelto exitosamente")
+        else:
+            print("Libro ya disponible")
+
     #Método para mostrar toda la información de la clase
     def mostrar (self) :
         if self.disponible == True:
@@ -22,20 +36,15 @@ libreria = []
 #Funcion para agregar un elemento a la lista
 def agregar(libro):
     libreria.append(libro)
-    print ("Libro añadido exitosamente")
+    print ("\nLibro añadido exitosamente")
 
 #Funcion para marcar un libro como "No disponible" al prestarlo
 #ó mostrar una advertencia si ya estaba prestado
 def prestar (isbn) :
     for libros in libreria:
         if libros.isbn == isbn:
-            if libros.disponible == True:
-                libros.disponible = False
-                print("Libro prestado exitosamente")
-                return
-            else:
-                print("Libro no disponible")
-                return
+            libros.prestar()
+            return
             
     print("Libro no encontrado")
 
@@ -44,13 +53,8 @@ def prestar (isbn) :
 def devolver (isbn) :
     for libros in libreria:
         if libros.isbn == isbn:
-            if libros.disponible == False:
-                libros.disponible = True
-                print("Libro devuelto exitosamente")
-                return
-            else:
-                print("Libro ya disponible")
-                return
+            libros.devolver()
+            return
 
     print("Libro no encontrado")
     
@@ -76,16 +80,16 @@ opcion = 1 #creacion de la variable de control del bucle while
 
 #Bucle interactivo de opciones
 while opcion != 6:
-    print ("Elige una opción")
+    print ("\nElige una opción")
     print ("1. Agregar libro\n" +
         "2. Prestar libro\n" +
         "3. Devolver libro\n" +
         "4. Mostrar libros\n" +
         "5. Buscar\n" +
         "6. Salir")
-    opcion = int(input("Opción elegida: ")) 
+    opcion = int(input("\nOpción elegida: ")) 
     if opcion == 1: 
-        titulo = input("Ingrese titulo: ")
+        titulo = input("\nIngrese titulo: ")
         autor = input("Ingrese autor: ")
         isbn = input("Ingrese ISBN: ")
         libro = Libro(titulo, autor, isbn)
