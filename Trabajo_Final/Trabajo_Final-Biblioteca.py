@@ -1,3 +1,6 @@
+#Declaración inicial de una lista vacía
+libreria = []
+
 #Definicion de la Clase Libro
 class Libro:
     #Constructor de la clase, inicializa los atributos de la clase
@@ -8,7 +11,7 @@ class Libro:
         self.__disponible = True
 
     #Método para agregar un libro a la lista
-    def agregar(self, libreria):
+    def agregar(self):
         libreria.append(self)
         print ("\nLibro añadido exitosamente")
     
@@ -44,40 +47,14 @@ class Libro:
         return self.__isbn
     
 
-
-#Declaración inicial de una lista vacía
-libreria = []
-
 #Funcion para buscar el indice del libro según el ISBN en la lista
-def buscar_indice(isbn):
+def buscar_indice(isbn, aux):
     for indice, libros in enumerate(libreria):
         if libros.get_isbn() == isbn:
             return indice
+    if aux:
+        print("Libro no encontrado")
     return None
-        
-#Funcion para prestar un libro de la lista buscando por ISBN
-def prestar_libro (isbn) :
-    indice = buscar_indice(isbn)
-    if indice != None:
-        libreria[indice].prestar()
-    else:    
-        print("Libro no encontrado")
-
-#Funcion para devolver un libro de la lista buscando por ISBN
-def devolver_libro (isbn) :
-    indice = buscar_indice(isbn)
-    if indice != None:
-        libreria[indice].devolver()
-    else:    
-        print("Libro no encontrado")
-
-#Funcion para buscar un elemento dentro de la lista según su ISBN
-def buscar_libro(isbn):
-    indice = buscar_indice(isbn)
-    if indice != None:
-        libreria[indice].mostrar()
-    else:    
-        print("Libro no encontrado")
 
 #Funcion para mostrar la información de cada objeto dentro de la lista
 def mostrar_libros():
@@ -95,8 +72,8 @@ while opcion != 6:
     print ("1. Agregar libro\n" +
             "2. Prestar libro\n" +
             "3. Devolver libro\n" +
-            "4. Mostrar libros\n" +
-            "5. Buscar\n" +
+            "4. Buscar Libro\n" +
+            "5. Mostrar libros\n" +
             "6. Salir")
     opcion = input("\nOpción elegida: ")
     if opcion.isdigit():
@@ -111,26 +88,25 @@ while opcion != 6:
         isbn = input("Ingrese ISBN: ")
         #Se crea un nuevo objeto libro con los datos introducidos
         libro = Libro(titulo, autor, isbn)
-        if buscar_indice(isbn) == None:    
+        if buscar_indice(isbn, False) == None:    
             #Se agrega el libro al listado
-            libro.agregar(libreria)
+            libro.agregar()
         else:
             print("Libro ya existente")
 
-    elif opcion == 2:
+    elif 2 <= opcion < 5:
         isbn = input("Ingrese ISBN: ")
-        prestar_libro(isbn)
-
-    elif opcion == 3:
-        isbn = input("Ingrese ISBN: ")
-        devolver_libro(isbn)
-
-    elif opcion == 4:
-        mostrar_libros()
+        indice = buscar_indice(isbn, True)
+        if indice != None:
+            if opcion == 2:
+                libreria[indice].prestar()
+            elif opcion == 3:
+                libreria[indice].devolver()
+            else:
+                libreria[indice].mostrar()
 
     elif opcion == 5:
-        isbn = input("Ingrese ISBN: ")
-        buscar_libro(isbn)
+        mostrar_libros()
 
     elif opcion == 6:
         print("Gracias por usar el servicio")
