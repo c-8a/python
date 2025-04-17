@@ -35,6 +35,8 @@ class MenuAgenda:
             return True
         else:
             return False
+    def guardar_agenda(self):
+        self.gestion_contactos.guardar_agenda()
 
     def appAgenda(self):
         print("Agenda de contactos")
@@ -51,7 +53,7 @@ class MenuAgenda:
                     nombre = input("Ingrese nombre :")
                     while not self.validar_nombre(nombre):
                         print(f"El nombre: {nombre} es incorrecto.")
-                        nombre = input("Ingrese nombre :")
+                        nombre = input("Ingrese nombre: ")
 
                     telefono = input("Ingrese telefono: ")
                     while not self.validar_telefono(telefono):
@@ -61,7 +63,7 @@ class MenuAgenda:
                     email = input("Ingrese email: ")
                     while not self.validar_email(email):
                         print(f"El email: {email} es incorrecto.")
-                        email = input("Email: ")
+                        email = input("Ingrese email: ")
 
                     contacto = Contacto(nombre, telefono, email)
                     self.gestion_contactos.agregar_contacto(contacto)
@@ -80,10 +82,15 @@ class MenuAgenda:
                         nombre = input("Ingrese nombre :")
                     self.gestion_contactos.eliminar_contacto(nombre)
                 elif opcion == 5:
+                    self.guardar_agenda()
                     print("Gracias por utilizar la agenda")
                     break
                 else:
                     print("Opcion incorrecta, intente de nuevo")
+            except KeyboardInterrupt:
+                self.guardar_agenda()
+                print("Proceso interrumpido por el usuario")
+                break
             except Exception as e:
                 print(f"Ha ocurrido un error: {e}")
 

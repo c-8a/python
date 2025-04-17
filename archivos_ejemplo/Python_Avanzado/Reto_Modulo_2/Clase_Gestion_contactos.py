@@ -1,53 +1,64 @@
 class GestionContactos:
 
     def __init__(self):
-        self.nombre_archivo = "Agenda_Contactos.txt"
+        self.__nombre_archivo = "Agenda_Contactos.txt"
+        self.__agenda = []
+        try:
+            with open(self.__nombre_archivo, "x", encoding="utf-8") as archivo:
+                print(f"Se ha creado el archivo: {self.__nombre_archivo}")
+        except FileExistsError as e:
+            try:
+                with open(self.__nombre_archivo, "r", encoding="utf-8") as archivo:
+                    for linea in archivo:
+                        self.__agenda.append(linea)
+            except Exception as e:
+                print(f"Error al leer la agenda: {e}")
+        except Exception as e:
+            print(f"Error al inicializar la agenda: {e}")
+
+    def get_nombreArchivo(self):
+        return self.__nombre_archivo
+
+    def get_agenda(self):
+        return self.__agenda
+
+    def set_agenda(self, agenda):
+        self.__agenda = agenda
 
     def agregar_contacto(self, contacto):
-        try:
-            with open(self.nombre_archivo, "a", encoding='utf-8') as archivo:
-                archivo.write(f"{contacto.get_nombre()}\n")
-                archivo.write(f"{contacto.get_telefono()}\n")
-                archivo.write(f"{contacto.get_email()}\n\n")
-                print("Contacto agendado exitosamente\n")
-        except Exception as e:
-            print(f"Error al agregar contacto: {e}")
+        self.__agenda.append(f"{contacto.get_nombre()}\n")
+        self.__agenda.append(f"{contacto.get_telefono()}\n")
+        self.__agenda.append(f"{contacto.get_email()}\n")
+        self.__agenda.append("\n")
 
     def mostrar_contactos(self):
         contador = 0
-        try:
-            with open(self.nombre_archivo, 'r', encoding='utf-8') as archivo:
-                for linea in archivo.readlines():
-                    print(f"- {linea}", end="")
-                    linea_sin_espacios = linea.strip()
-                    if not linea_sin_espacios:
-                        contador += 1
-                print(f"Se encontraron {contador} contactos")
-        except Exception as e:
-            print(f"Error al abrir o leer el archivo: {e}")
+        for linea in self.get_agenda():
+            print(f"- {linea}", end="")
+            linea_vacia = linea.strip()
+            if not linea_vacia:
+                contador += 1
+        print(f"Se encontraron {contador} contactos")
 
     def buscar_contacto(self, nombre):
         encontrado = False
-        contador = 0
+        agenda = self.get_agenda()
         localizacion = []
-        try:
-            with open(self.nombre_archivo, 'r', encoding='utf-8') as archivo:
-                for i, linea in enumerate(archivo):
-                    if nombre.lower() in linea.lower():
-                        contador += 1
-                        print(f"Nombre: {linea}", end = "")
-                        print(f"Telefono: {next(archivo)}", end = "")
-                        print(f"Email: {next(archivo)}")
-                        encontrado = True
-                        localizacion.append(i)
-                if not encontrado:
-                    print(f"Contacto \"{nombre}\" no encontrado en la agenda")
-                else:
-                    print(f"{contador} contactos encontrados en la agenda")
-                    return localizacion
-        except Exception as e:
-            print(f"Error al abrir o leer el archivo {e}")
-
+        i = 0
+        while i < len(agenda):
+            linea = agenda[i]
+            if nombre.lower() in linea.lower():
+                print(f"Nombre: {linea}", end="")
+                print(f"Teléfono: {agenda[i+1]}", end="")
+                print(f"Email: {agenda[i+2]}", end="")
+                encontrado = True
+                localizacion.append(i)
+            i += 4
+        if not encontrado:
+            print(f"Contacto \"{nombre}\" no encontrado en la agenda")
+        else:
+            print(f"{len(localizacion)} contactos encontrados en la agenda")
+            return localizacion
 
     def eliminar_contacto(self, nombre):
         localizacion = self.buscar_contacto(nombre)
@@ -56,29 +67,23 @@ class GestionContactos:
         elif len(localizacion) == 1:
             print("¿Está seguro de querer eliminar el contacto?")
             if input("Y | N: ").lower() == "y":
-                try:
-                    with open(self.nombre_archivo, 'r', encoding='utf-8') as archivo:
-                        lineas = archivo.readlines()
-
-                    i = 0
-                    lineas_filtradas = []
-                    while i < len(lineas):
-                        if i not in localizacion:
-                            lineas_filtradas.append(lineas[i])
-                            i += 1  # Pasar a la siguiente línea
-                        else:
-                            i += 4  # Saltar las siguientes 4 líneas (incluida la actual)
-
-                    with open(self.nombre_archivo, 'w', encoding='utf-8') as archivo:
-                        archivo.writelines(lineas_filtradas)
-
-                    print(f"Se eliminó el contacto {nombre} de la agenda.")
-
-                except Exception as e:
-                    print(f"Error al procesar el archivo: {e}")
-            else:
-                return
+                agenda = self.get_agenda()
+                i = 0
+                lineas_filtradas = []
+                while i < len(agenda):
+                    if i not in localizacion:
+                        lineas_filtradas.append(agenda[i])
+                        i += 1  # Pasar a la siguiente línea
+                    else:
+                        i += 4  # Saltar las siguientes 4 líneas (incluida la actual)
+                self.set_agenda(lineas_filtradas)
+                print(f"Se eliminó el contacto {nombre} de la agenda.")
         else:
             print("Demasiados contactos encontrados, intente de nuevo")
 
-
+    def guardar_agenda(self):
+        try:
+            with open(self.get_nombreArchivo(), "w", encoding="utf-8") as archivo:
+                archivo.writelines(self.get_agenda())
+        except Exception as e:
+            print(f"Error al guardar el archivo: {e}")
