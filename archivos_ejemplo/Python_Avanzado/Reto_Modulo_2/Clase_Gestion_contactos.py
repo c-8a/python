@@ -9,6 +9,7 @@ class GestionContactos:
         except FileExistsError as e:
             try:
                 with open(self.__nombre_archivo, "r", encoding="utf-8") as archivo:
+                    #Modificar la lista __agenda para que sea una lista de objetos
                     for linea in archivo:
                         self.__agenda.append(linea)
             except Exception as e:
@@ -30,6 +31,7 @@ class GestionContactos:
         self.__agenda.append(f"{contacto.get_telefono()}\n")
         self.__agenda.append(f"{contacto.get_email()}\n")
         self.__agenda.append("\n")
+        self.guardar_agenda()
 
     def mostrar_contactos(self):
         contador = 0
@@ -78,6 +80,7 @@ class GestionContactos:
                         i += 4  # Saltar las siguientes 4 líneas (incluida la actual)
                 self.set_agenda(lineas_filtradas)
                 print(f"Se eliminó el contacto {nombre} de la agenda.")
+                self.guardar_agenda()
         else:
             print("Demasiados contactos encontrados, intente de nuevo")
 
