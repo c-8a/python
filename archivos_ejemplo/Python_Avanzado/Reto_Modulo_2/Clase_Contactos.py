@@ -5,6 +5,11 @@ class Contacto:
         self.__telefono = telefono
         self.__email = email
 
+    def __str__(self):
+        return (f"Nombre: {self.__nombre}\n"
+                f"Teléfono: {self.__telefono}\n"
+                f"Email: {self.__email}\n")
+
     def get_nombre(self):
         return self.__nombre
 

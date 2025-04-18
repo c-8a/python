@@ -48,10 +48,7 @@ class GestionContactos:
 
     def mostrar_contactos(self):
         for contacto in self.get_agenda():
-            print(f"- {contacto.get_nombre()}")
-            print(f"- {contacto.get_telefono()}")
-            print(f"- {contacto.get_email()}")
-            print("")
+            print(contacto)
         print(f"Se encontraron {len(self.get_agenda())} contactos")
 
     def buscar_contacto(self, nombre):
@@ -62,10 +59,7 @@ class GestionContactos:
         while i < len(agenda):
             contacto = agenda[i]
             if nombre.lower() in contacto.get_nombre().lower():
-                print(f"Nombre: {contacto.get_nombre()}")
-                print(f"Teléfono: {contacto.get_telefono()}")
-                print(f"Email: {contacto.get_email()}")
-                print("")
+                print(contacto)
                 encontrado = True
                 localizacion.append(i)
             i += 1
@@ -100,9 +94,6 @@ class GestionContactos:
         try:
             with open(self.get_nombreArchivo(), "w", encoding="utf-8") as archivo:
                 for contacto in agenda:
-                    archivo.write(f"{contacto.get_nombre()}\n")
-                    archivo.write(f"{contacto.get_telefono()}\n")
-                    archivo.write(f"{contacto.get_email()}\n")
-                    archivo.write("\n")
+                    archivo.write(str(contacto)+"\n")
         except Exception as e:
             print(f"Error al guardar el archivo: {e}")
