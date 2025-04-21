@@ -10,8 +10,8 @@ class MenuAgenda:
         self.gestion_contactos = GestionContactos()
 
     def validar_nombre(self, nombre):
-        # Expresión regular que permite solo letra y espacios
-        patron = r"^(?:[A-Za-z][a-z]*\s?)+$"
+        # patron = r"^(?:[A-Za-z][a-z]*\s?)+$"
+        patron = r"^([A-Za-z][a-z]*\s{1})+(\b[A-Za-z][a-z]+\b)"
         return bool(re.fullmatch(patron, nombre))
 
     def validar_telefono(self, telefono):
