@@ -1,4 +1,4 @@
-from Reto_Modulo_2.Clase_Contactos import Contacto
+from Python_Memos.archivos_ejemplo.Python_Avanzado.Reto_Modulo_2.Clase_Contactos import Contacto
 
 
 class GestionContactos:
