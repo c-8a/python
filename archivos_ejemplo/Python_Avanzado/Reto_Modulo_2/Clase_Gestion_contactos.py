@@ -59,9 +59,10 @@ class GestionContactos:
         while i < len(agenda):
             contacto = agenda[i]
             if nombre.lower() in contacto.get_nombre().lower():
+                localizacion.append(i)
+                print(f"{len(localizacion)}:")
                 print(contacto)
                 encontrado = True
-                localizacion.append(i)
             i += 1
         if not encontrado:
             print(f"Contacto \"{nombre}\" no encontrado en la agenda")
@@ -71,10 +72,18 @@ class GestionContactos:
 
     def eliminar_contacto(self, nombre):
         localizacion = self.buscar_contacto(nombre)
-        if len(localizacion) == 0:
-            return
-        elif len(localizacion) == 1:
-            print("¿Está seguro de querer eliminar el contacto?")
+        if len(localizacion) > 0:
+            if len(localizacion) > 1:
+                print("Ingrese el indice del contacto que desea eliminar")
+                indice = int(input("Ingrese '0' para eliminar todas las coincidencias: "))
+                while 0 > indice > len(localizacion):
+                    indice = int(input("Ingrese un indice válido: "))
+                if indice != 0:
+                    localizacion_filtrada = [valor for valor in localizacion if valor == indice]
+                    localizacion = localizacion_filtrada
+                    print("¿Está seguro de querer eliminar el contacto?")
+                else:
+                    print("¿Está seguro de querer eliminar los contactos?")
             if input("Y | N: ").lower() == "y":
                 agenda = self.get_agenda()
                 i = 0
@@ -87,7 +96,7 @@ class GestionContactos:
                 print(f"Se eliminó el contacto {nombre} de la agenda.")
                 self.guardar_agenda()
         else:
-            print("Demasiados contactos encontrados, intente de nuevo")
+            return
 
     def guardar_agenda(self):
         agenda = self.get_agenda()
